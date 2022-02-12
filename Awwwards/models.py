@@ -264,9 +264,6 @@ class Profile(models.Model):
     email_confirmed = models.BooleanField(default=False, verbose_name='Is Confirmed?')
     date_created = models.DateTimeField(auto_now_add=True, verbose_name='Date Created')
     date_updated = models.DateTimeField(auto_now=True, verbose_name='Date Updated')
-
-    def get_avatar(self):
-        return self.profile_image.url if self.profile_image else static('assets/media/default.jpg')
     
     def __str__(self):
         return str(self.user)

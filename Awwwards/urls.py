@@ -9,6 +9,8 @@ urlpatterns = [
     path('', views.Home, name="Home"),
     path('register', views.Register, name="Register"),
     path('login', views.Login, name="Login"),
+    path('logout', views.Logout, name="Logout"),
+    path('activateuser/<uidb64>/<token>',views.ActivateAccount, name = 'ActivateAccount'),
     path('resetpassword/',auth_views.PasswordResetView.as_view(template_name='ResetPassword.html'), name = 'reset_password'),
     path('resetpassword/sent/',auth_views.PasswordResetDoneView.as_view(template_name='PasswordResetSent.html'), name = 'password_reset_done'),
     path('resetpassword/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(template_name='PasswordResetConfirm.html'), name = 'password_reset_confirm'),

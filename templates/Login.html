@@ -27,12 +27,12 @@
             <h2 class="text-center">Log In</h2>
             <div class="hint-text">Don't have an account? <a href="{% url 'Register' %}" name="Login">Register</a></div>
             <div class="form-group">
-                <input type="email" class="form-control" name="username" placeholder="Username" required="required">
+                <input type="text" class="form-control" name="username" placeholder="Username" required="required">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" name="password1" placeholder="Password" required="required">
+                <input type="password" class="form-control" name="password" placeholder="Password" required="required">
             </div>
-            <div class="hint-text"><a href="{% url 'reset_password' %}" name="reset_password">Forgot Password</a></div>       
+            <div class="hint-text"><a href="{% url 'reset_password' %}" name="reset_password">Forgot Your Password?</a></div>       
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-lg btn-block">Log In</button>
             </div>

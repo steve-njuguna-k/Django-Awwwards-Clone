@@ -2,16 +2,43 @@ from audioop import reverse
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .tokens import AccountActivationTokenGenerator
-from .Threading import send_activation_email
 from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode
+from django.template.loader import render_to_string
+from .tokens import account_activation_token
+from django.core.mail import EmailMessage
+from Core import settings
+import threading
 
-# Create your views here.
-def Home(request):
-    return render(request, 'Index.html')
+class EmailThread(threading.Thread):
+
+    def __init__(self, email):
+        self.email = email
+        threading.Thread.__init__(self)
+
+    def run(self):
+        self.email.send()
+
+def send_activation_email(user, request):
+    current_site = get_current_site(request)
+    email_subject = 'Activate Your Django Awwwards Account'
+    email_body = render_to_string('Account Activation Email.html', {
+        'user': user,
+        'domain': current_site,
+        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+        'token': account_activation_token.make_token(user)
+    })
+
+    email = EmailMessage(subject=email_subject, body=email_body,
+    from_email=settings.EMAIL_FROM_USER, to=[user.email])
+
+    if not settings.TESTING:
+        EmailThread(email).start()
 
 def Register(request):
     if request.method == 'POST':
@@ -54,7 +81,7 @@ def ActivateAccount(request, uidb64, token):
     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
 
-    if user is not None and AccountActivationTokenGenerator.check_token(user, token):
+    if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.profile.email_confirmed = True
         user.save()
@@ -85,7 +112,7 @@ def Login(request):
 
         if user is not None:
             login(request, user)
-            return redirect(reverse('Home'))
+            return redirect('Home')
         
     return render(request, 'Login.html')
 
@@ -93,4 +120,7 @@ def Login(request):
 def Logout(request):
     logout(request)
     messages.success(request, '✅ Successfully Logged Out!')
-    return redirect(reverse('Login'))
+    return redirect('Login')
+
+def Home(request):
+    return render(request, 'Index.html')
