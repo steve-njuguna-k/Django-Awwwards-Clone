@@ -371,6 +371,18 @@ input.form-control {
 	border-radius: 10px;
 }
 
+select.form-control {
+  border-radius: 10px;
+}
+
+textarea.form-control {
+  border-radius: 10px;
+}
+
+.form-control {
+  border-radius: 10px;
+}
+
 .main-section{
 	margin: 30px;
 }
@@ -463,6 +475,14 @@ input.form-control {
 	background-color: #0000ff;
 }
 
-.badge-primary:hober{
+.badge-primary:hover{
+	background-color: #0000ff;
+}
+
+.btn-primary{
+	background-color: #0000ff;
+}
+
+.btn-primary:hover{
 	background-color: #0000ff;
 }

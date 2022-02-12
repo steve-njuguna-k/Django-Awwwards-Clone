@@ -28,11 +28,14 @@
                     </li>
                 </ul>
                 <div class="d-flex">
+                    <a href="{% url 'AddPortfolio' %}" name="AddPortfolio" style="margin-right: 20px;">
+                        <button class="btn btn-dark">Add Portfolio</button>
+                    </a>
                 {% if user.is_authenticated %}
                     <div class="dropdown">
-                        <button class="btn btn-link" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-link btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
                             <div style="background-color: #ffffff;">
-                                <img class="rounded" src="https://img.icons8.com/bubbles/50/000000/short-curly-hair-girl-musical-notes.png" height="40" width="40">
+                                <img class="rounded-circle" src="https://toppng.com/uploads/preview/roger-berry-avatar-placeholder-11562991561rbrfzlng6h.png" height="30" width="30">
                             </div>
                         </button> 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

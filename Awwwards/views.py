@@ -119,8 +119,10 @@ def Login(request):
 @login_required(login_url='Login')
 def Logout(request):
     logout(request)
-    messages.success(request, '✅ Successfully Logged Out!')
     return redirect('Home')
 
 def Home(request):
     return render(request, 'Index.html')
+
+def AddPortfolio(request):
+    return render(request, 'Add Portfolio.html')
