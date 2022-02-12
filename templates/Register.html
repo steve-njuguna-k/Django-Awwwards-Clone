@@ -18,6 +18,7 @@
     </div>
     <div class="signup-form">
         <form action="" method="POST">
+            {% csrf_token %}
             <center>
                 <a href="{% url 'Home' %}" name = 'Home' class="logo">
                     <img class="py-4" src={% static "assets/img/logo.png" %} alt="" width="300">
