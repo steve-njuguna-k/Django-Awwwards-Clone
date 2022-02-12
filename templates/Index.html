@@ -6,4 +6,24 @@
         {% include 'Navbar.html' %}
     </div>
 
+    <!-- Landing Page -->
+    <div class="banner">
+        <div class="cover">
+            <div class="container image">
+                <h2 id="category">Awarding Design, Creativity & Innovation on the Internet.</h2>
+                <form class="form" role="search" method="POST" action="" name="Search">
+                    {% csrf_token %}
+                    <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search For Portfolios & Categories" name="imageSearch">
+                    </div>
+                    <br>
+                    <small>Trending searches: {% for category in trendingcategories %} <a class="trending-links" href="{% url 'ImagesInCategory' category.id %}"> <span class="badge badge badge-light">{{ category.name }}</span> </a> {% endfor %}</p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--Main Section-->
+    
+
 {% endblock %}
