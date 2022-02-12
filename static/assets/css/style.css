@@ -150,3 +150,66 @@ a:hover {
 	padding-bottom: 15px;
 	text-align: center;
 }
+.forgot-password-form {
+	width: 400px;
+	margin: 30px auto;
+}
+.forgot-password-form form {
+	color: #999;
+	border-radius: 3px;
+	margin-bottom: 15px;
+	background: #fff;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	padding: 30px;
+}
+.forgot-password-form h2  {
+	color: #333;
+	font-weight: bold;
+	margin-top: 0;
+}
+.forgot-password-form hr  {
+	margin: 0 -30px 20px;
+}    
+.forgot-password-form .form-group {
+	margin-bottom: 20px;
+}
+.forgot-password-form input[type="checkbox"] {
+	margin-top: 3px;
+}
+.forgot-password-form .row div:first-child {
+	padding-right: 10px;
+}
+.forgot-password-form .row div:last-child {
+	padding-left: 10px;
+}
+.forgot-password-form .btn {        
+	font-size: 16px;
+	font-weight: bold;
+	background: #000000;
+	border: none;
+	min-width: 140px;
+}
+.forgot-password-form .btn:hover, .forgot-password-form .btn:focus {
+	background: #000000 !important;
+	outline: none;
+}
+.forgot-password-form a {
+	color: #0000ff;
+	text-decoration: none;
+}
+.forgot-password-form a:hover {
+    color: #0000ff;
+	text-decoration: none;
+}
+.forgot-password-form form a {
+	color: #0000ff;
+	text-decoration: none;
+}	
+.forgot-password-form form a:hover {
+	color: #0000ff;
+	text-decoration: none;
+}
+.forgot-password-form .hint-text  {
+	padding-bottom: 15px;
+	text-align: center;
+}
