@@ -76,11 +76,12 @@ a:hover {
 	text-decoration: none;
 }
 .signup-form form a {
-	color: #000000;
+	color: #0000ff;
 	text-decoration: none;
 }	
 .signup-form form a:hover {
-	text-decoration: underline;
+	color: #0000ff;
+	text-decoration: none;
 }
 .signup-form .hint-text  {
 	padding-bottom: 15px;
@@ -138,11 +139,12 @@ a:hover {
 	text-decoration: none;
 }
 .login-form form a {
-	color: #000000;
+	color: #0000ff;
 	text-decoration: none;
 }	
 .login-form form a:hover {
-	text-decoration: underline;
+	color: #0000ff;
+	text-decoration: none;
 }
 .login-form .hint-text  {
 	padding-bottom: 15px;
