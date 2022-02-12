@@ -30,9 +30,11 @@
                 <div class="d-flex">
                 {% if user.is_authenticated %}
                     <div class="dropdown">
-                        <button class="btn btn-dark dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-user"></i> Profile
-                        </button>
+                        <button class="btn btn-link" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                            <div style="background-color: #ffffff;">
+                                <img class="rounded" src="https://img.icons8.com/bubbles/50/000000/short-curly-hair-girl-musical-notes.png" height="40" width="40">
+                            </div>
+                        </button> 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="#"><i class="fa-solid fa-user-large"></i> My Profile</a>
                             <a class="dropdown-item" href="#"><i class="fa-solid fa-file-lines"></i> My Portfolio</a>
