@@ -2,8 +2,8 @@
 {% load static %}
 
 {% block content %}
-    Django Awwwards
-    <a href="{% url 'Logout' %}" name="Logout">
-        <button>Logout</button>
-    </a>
+    <div class="menu-container">
+        {% include 'Navbar.html' %}
+    </div>
+
 {% endblock %}

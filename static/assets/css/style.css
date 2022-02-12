@@ -1,3 +1,9 @@
+*
+{
+    padding: 0;
+    margin: 0;
+}
+
 body {
 	color: #202121;
 	background: #f4f7f6;
@@ -6,10 +12,12 @@ body {
 
 a {
     color: #0000ff;
+	text-decoration: none;
 }
 
 a:hover {
     color: #0000ff;
+	text-decoration: none;
 }
 
 .form-control {
@@ -212,4 +220,44 @@ a:hover {
 .forgot-password-form .hint-text  {
 	padding-bottom: 15px;
 	text-align: center;
+}
+
+.navbar.navbar-dark .nav-item .nav-link { 
+    color: #000000!important; 
+    background-color: #fff;
+} 
+
+.navbar.navbar-dark .nav-item .nav-link:hover { 
+    color: #000000 !important; 
+    background-color: #fff;
+}
+
+.navbar {
+    background-color: #fff!important;
+}
+
+.navbar-nav {
+    background-color: #fff;
+}
+
+.navbar-brand {
+    background-color: #fff;
+}
+
+.navbar-dark .navbar-toggler {
+    color: #000000 ;
+    border-color: #000000 ;
+	background-color: #000000 ;
+}
+
+.btn-dark {
+    color: #fff;
+    background-color: #000000;
+    border-color: #000000;
+}
+
+.btn-dark:hover {
+    color: #fff;
+    background-color: #000000;
+    border-color: #000000;
 }
