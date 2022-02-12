@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'Awwwards',
     'django_cleanup.apps.CleanupConfig',
     'cloudinary'
 ]
