@@ -1,0 +1,16 @@
+{% autoescape off %}
+
+Hey {{user.first_name}},
+
+Thank you for signing up with Django Awwwwards. We are so glad to have join our ever growing community of developers keen
+on contributing towards UI/UX reviews to otherwise new developers.
+
+To finish your sign up process, please use the link below to verify your Email Address ({{ user.email }}):
+
+http://{{ domain }}{% url 'ActivateAccount' uidb64=uid token=token %}
+
+If clicking the link above doesn't work, please copy and paste the URL in a new browser window instead.
+
+Regards,
+Team API Ranx
+{% endautoescape %}

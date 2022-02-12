@@ -86,3 +86,65 @@ a:hover {
 	padding-bottom: 15px;
 	text-align: center;
 }
+.login-form {
+	width: 400px;
+	margin: 30px auto;
+}
+.login-form form {
+	color: #999;
+	border-radius: 3px;
+	margin-bottom: 15px;
+	background: #fff;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	padding: 30px;
+}
+.login-form h2  {
+	color: #333;
+	font-weight: bold;
+	margin-top: 0;
+}
+.login-form hr  {
+	margin: 0 -30px 20px;
+}    
+.login-form .form-group {
+	margin-bottom: 20px;
+}
+.login-form input[type="checkbox"] {
+	margin-top: 3px;
+}
+.login-form .row div:first-child {
+	padding-right: 10px;
+}
+.login-form .row div:last-child {
+	padding-left: 10px;
+}
+.login-form .btn {        
+	font-size: 16px;
+	font-weight: bold;
+	background: #000000;
+	border: none;
+	min-width: 140px;
+}
+.login-form .btn:hover, .login-form .btn:focus {
+	background: #000000 !important;
+	outline: none;
+}
+.login-form a {
+	color: #0000ff;
+	text-decoration: none;
+}
+.login-form a:hover {
+    color: #0000ff;
+	text-decoration: none;
+}
+.login-form form a {
+	color: #000000;
+	text-decoration: none;
+}	
+.login-form form a:hover {
+	text-decoration: underline;
+}
+.login-form .hint-text  {
+	padding-bottom: 15px;
+	text-align: center;
+}
