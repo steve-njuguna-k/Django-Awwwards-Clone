@@ -1,7 +1,10 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib import messages
+from .tokens import AccountActivationTokenGenerator
 from .Threading import send_activation_email
+from django.utils.encoding import force_str
+from django.utils.http import urlsafe_base64_decode
 
 # Create your views here.
 def Home(request):
@@ -40,3 +43,20 @@ def Register(request):
             return redirect('Register')
 
     return render(request, 'Register.html')
+
+def ActivateAccount(request, uidb64, token):
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
+    if user is not None and AccountActivationTokenGenerator.check_token(user, token):
+        user.is_active = True
+        user.profile.email_confirmed = True
+        user.save()
+        messages.success(request, ('✅ Email Verified! You can now Log in'))
+        return redirect('Login')
+    else:
+        messages.error(request, ('⚠️ The confirmation link was invalid, possibly because it has already been used.'))
+        return redirect('Login')
