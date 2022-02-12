@@ -124,5 +124,10 @@ def Logout(request):
 def Home(request):
     return render(request, 'Index.html')
 
+@login_required(login_url='Login')
 def AddPortfolio(request):
     return render(request, 'Add Portfolio.html')
+
+@login_required(login_url='Login')
+def EditProfile(request):
+    return render(request, 'Edit Profile.html')

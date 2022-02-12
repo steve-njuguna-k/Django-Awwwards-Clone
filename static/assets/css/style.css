@@ -5,12 +5,12 @@ body {
 }
 
 a {
-    color: #0000ff;
+    color: #0666eb;
 	text-decoration: none;
 }
 
 a:hover {
-    color: #0000ff;
+    color: #0666eb;
 	text-decoration: none;
 }
 
@@ -74,19 +74,19 @@ h1, h2, h3, h4, h5, h6, p{
 	outline: none;
 }
 .signup-form a {
-	color: #0000ff;
+	color: #0666eb;
 	text-decoration: none;
 }
 .signup-form a:hover {
-    color: #0000ff;
+    color: #0666eb;
 	text-decoration: none;
 }
 .signup-form form a {
-	color: #0000ff;
+	color: #0666eb;
 	text-decoration: none;
 }	
 .signup-form form a:hover {
-	color: #0000ff;
+	color: #0666eb;
 	text-decoration: none;
 }
 .signup-form .hint-text  {
@@ -137,19 +137,19 @@ h1, h2, h3, h4, h5, h6, p{
 	outline: none;
 }
 .login-form a {
-	color: #0000ff;
+	color: #0666eb;
 	text-decoration: none;
 }
 .login-form a:hover {
-    color: #0000ff;
+    color: #0666eb;
 	text-decoration: none;
 }
 .login-form form a {
-	color: #0000ff;
+	color: #0666eb;
 	text-decoration: none;
 }	
 .login-form form a:hover {
-	color: #0000ff;
+	color: #0666eb;
 	text-decoration: none;
 }
 .login-form .hint-text  {
@@ -200,19 +200,19 @@ h1, h2, h3, h4, h5, h6, p{
 	outline: none;
 }
 .forgot-password-form a {
-	color: #0000ff;
+	color: #0666eb;
 	text-decoration: none;
 }
 .forgot-password-form a:hover {
-    color: #0000ff;
+    color: #0666eb;
 	text-decoration: none;
 }
 .forgot-password-form form a {
-	color: #0000ff;
+	color: #0666eb;
 	text-decoration: none;
 }	
 .forgot-password-form form a:hover {
-	color: #0000ff;
+	color: #0666eb;
 	text-decoration: none;
 }
 .forgot-password-form .hint-text  {
@@ -472,17 +472,38 @@ textarea.form-control {
 }
 
 .badge-primary{
-	background-color: #0000ff;
+	background-color: #0666eb;
 }
 
 .badge-primary:hover{
-	background-color: #0000ff;
+	background-color: #0666eb;
 }
 
 .btn-primary{
-	background-color: #0000ff;
+	background-color: #0666eb;
 }
 
 .btn-primary:hover{
-	background-color: #0000ff;
+	background-color: #0666eb;
+}
+
+.dropify-wrapper {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  height: 200px;
+  padding: 5px 10px;
+  font-size: 14px;
+  line-height: 22px;
+  color: #777;
+  background-color: #FFF;
+  background-image: none;
+  text-align: center;
+  border: 2px solid #000000!important;
+  -webkit-transition: border-color .15s linear;
+  transition: border-color .15s linear;
+  border-radius: 10px;
 }

@@ -29,7 +29,7 @@
                 </ul>
                 <div class="d-flex">
                     <a href="{% url 'AddPortfolio' %}" name="AddPortfolio" style="margin-right: 20px;">
-                        <button class="btn btn-dark">Add Portfolio</button>
+                        <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add Portfolio</button>
                     </a>
                 {% if user.is_authenticated %}
                     <div class="dropdown">
@@ -41,6 +41,8 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="#"><i class="fa-solid fa-user-large"></i> My Profile</a>
                             <a class="dropdown-item" href="#"><i class="fa-solid fa-file-lines"></i> My Portfolio</a>
+                            <a class="dropdown-item" href="{% url 'EditProfile' %}" name="EditProfile"><i class="fa-solid fa-edit"></i> Edit Profile</a>
+                            <a class="dropdown-item" href="#"><i class="fa-solid fa-cog"></i> Settings</a>
                             <a class="dropdown-item" href="{% url 'Logout' %}" name="Logout"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
                         </div>
                     </div>
