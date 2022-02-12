@@ -1,3 +1,4 @@
+from audioop import reverse
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -5,6 +6,8 @@ from .tokens import AccountActivationTokenGenerator
 from .Threading import send_activation_email
 from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def Home(request):
@@ -60,3 +63,34 @@ def ActivateAccount(request, uidb64, token):
     else:
         messages.error(request, ('⚠️ The confirmation link was invalid, possibly because it has already been used.'))
         return redirect('Login')
+    
+def Login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = authenticate(username=username, password=password)
+
+        # if user and not user.profile.email_confirmed:
+        #     messages.error(request, '⚠️ Email is not verified, please check your inbox')
+        #     return render(request, 'Login.html')
+
+        if not User.objects.filter(username=username).exists():
+            messages.error(request, '⚠️ Username Does Not Exist! Choose Another One')
+            return redirect('Login')
+
+        if user is None:
+            messages.error(request, '⚠️ Username/Password Is Incorrect or Account Is Not Activated!! Please Try Again')
+            return redirect('Login')
+
+        if user is not None:
+            login(request, user)
+            return redirect(reverse('Home'))
+        
+    return render(request, 'Login.html')
+
+@login_required(login_url='Login')
+def Logout(request):
+    logout(request)
+    messages.success(request, '✅ Successfully Logged Out!')
+    return redirect(reverse('Login'))
