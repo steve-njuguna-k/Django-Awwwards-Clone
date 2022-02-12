@@ -120,7 +120,7 @@ def Login(request):
 def Logout(request):
     logout(request)
     messages.success(request, '✅ Successfully Logged Out!')
-    return redirect('Login')
+    return redirect('Home')
 
 def Home(request):
     return render(request, 'Index.html')

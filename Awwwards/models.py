@@ -1,3 +1,4 @@
+from sre_parse import CATEGORIES
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf.urls.static import static
@@ -251,16 +252,52 @@ COUNTRIES = [
     ('Zimbabwe', ('Zimbabwe')), 
 ]
 
+CATEGORIES = [
+    ('For Practise', ('For Practise')),
+    ('Professional', ('Professional')),
+]
+
+LANGUAGES = [
+    ('C', ('C')), 
+    ('C++', ('C++')), 
+    ('C#', ('C#')), 
+    ('Erlang', ('Erlang')), 
+    ('Go', ('Go')), 
+    ('Haskell', ('Haskell')), 
+    ('HTML', ('HTML')), 
+    ('iOS', ('iOS')),
+    ('Java', ('Java')), 
+    ('Lua', ('Lua')), 
+    ('.NET', ('.NET')), 
+    ('Node', ('Node')), 
+    ('PHP', ('PHP')), 
+    ('Python', ('Python')), 
+    ('Ruby', ('Ruby')), 
+    ('Clojure', ('Clojure')),
+    ('Rust', ('Rust')), 
+    ('Android', ('Android')), 
+    ('Electron', ('Electron')), 
+    ('Flutter', ('Flutter')), 
+    ('Gatsby', ('Gatsby')), 
+    ('JavaScript', ('JavaScript')), 
+    ('Kotlin', ('Kotlin')), 
+    ('R', ('R')), 
+    ('Roku', ('Roku')),
+    ('Swift', ('Swift')), 
+    ('Xamarin', ('Xamarin')), 
+    ('Apex', ('Apex')), 
+]
+
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='User')
     bio = models.TextField(max_length=150, verbose_name='Bio', null=True)
-    profile_image = models.ImageField(upload_to='Profile-Pics', verbose_name='Bio', null=True)
-    country = models.CharField(max_length=100, choices="", verbose_name="Country")
-    webiste_link = models.URLField(max_length=500, verbose_name="Webiste Link")
-    instagram_link = models.URLField(max_length=500, verbose_name="Instagram Link")
-    linkedin_link = models.URLField(max_length=500, verbose_name="LinkedIn Link")
-    twitter_link = models.URLField(max_length=500, verbose_name="Twitter Link")
+    profile_image = models.ImageField(upload_to='Profile-Pics', verbose_name='Profile Image', null=True)
+    country = models.CharField(max_length=100, choices=COUNTRIES, verbose_name="Country", null=True)
+    webiste_link = models.URLField(max_length=500, verbose_name="Webiste Link", null=True)
+    instagram_link = models.URLField(max_length=500, verbose_name="Instagram Link", null=True)
+    linkedin_link = models.URLField(max_length=500, verbose_name="LinkedIn Link", null=True)
+    twitter_link = models.URLField(max_length=500, verbose_name="Twitter Link", null=True)
     email_confirmed = models.BooleanField(default=False, verbose_name='Is Confirmed?')
     date_created = models.DateTimeField(auto_now_add=True, verbose_name='Date Created')
     date_updated = models.DateTimeField(auto_now=True, verbose_name='Date Updated')
@@ -270,3 +307,27 @@ class Profile(models.Model):
     
     class Meta:
         verbose_name_plural = 'Profiles'
+
+    @property
+    def get_avatar(self):
+        return self.profile_image.url if self.profile_image else static('assets/img/default.jpg')
+
+class Portfolio(models.Model):
+    profile_image = models.ImageField(upload_to='Portfolio-Pics', verbose_name='Portfolio  Image', null=False)
+    title = models.CharField(max_length=500, verbose_name='Title', null=False)
+    caption = models.CharField(max_length=2200, verbose_name='Caption', null=False)
+    url = models.URLField(max_length=500, verbose_name="Webiste Link", null=False)
+    repo = models.URLField(max_length=500, verbose_name="GitHub Repository", null=False)
+    primary_languge = models.CharField(max_length=100, choices=LANGUAGES, verbose_name="Primary Programming Language", null=False)
+    category = models.CharField(max_length=100, choices=CATEGORIES, verbose_name="Category", null=False)
+    country = models.CharField(max_length=100, choices=COUNTRIES, verbose_name="Country", null=False)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Author')
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name='Profile')
+    date_created = models.DateTimeField(auto_now_add=True, verbose_name='Date Created')
+    date_updated = models.DateTimeField(auto_now=True, verbose_name='Date Updated')
+
+    def __str__(self):
+        return str(self.title)
+    
+    class Meta:
+        verbose_name_plural = 'Portfolio'
