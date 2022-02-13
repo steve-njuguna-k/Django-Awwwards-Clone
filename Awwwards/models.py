@@ -291,20 +291,20 @@ LANGUAGES = [
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='User')
-    bio = models.TextField(max_length=150, verbose_name='Bio', null=True)
-    profile_image = models.ImageField(upload_to='Profile-Pics', verbose_name='Profile Image', null=True)
-    country = models.CharField(max_length=100, choices=COUNTRIES, verbose_name="Country", null=True)
-    webiste_link = models.URLField(max_length=500, verbose_name="Webiste Link", null=True)
-    github_link = models.URLField(max_length=500, verbose_name="GitHub Link", null=True)
-    instagram_link = models.URLField(max_length=500, verbose_name="Instagram Link", null=True)
-    linkedin_link = models.URLField(max_length=500, verbose_name="LinkedIn Link", null=True)
-    twitter_link = models.URLField(max_length=500, verbose_name="Twitter Link", null=True)
+    bio = models.TextField(max_length=150, verbose_name='Bio', null=True, blank=True)
+    profile_image = models.ImageField(upload_to='Profile-Pics', verbose_name='Profile Image', null=True, blank=True)
+    country = models.CharField(max_length=100, choices=COUNTRIES, verbose_name="Country", null=True, blank=True)
+    personal_website = models.URLField(max_length=500, verbose_name="Personal Website", null=True, blank=True)
+    github_link = models.URLField(max_length=500, verbose_name="GitHub Link", null=True, blank=True)
+    instagram_link = models.URLField(max_length=500, verbose_name="Instagram Link", null=True, blank=True)
+    linkedin_link = models.URLField(max_length=500, verbose_name="LinkedIn Link", null=True, blank=True)
+    twitter_link = models.URLField(max_length=500, verbose_name="Twitter Link", null=True, blank=True)
     email_confirmed = models.BooleanField(default=False, verbose_name='Is Confirmed?')
     date_created = models.DateTimeField(auto_now_add=True, verbose_name='Date Created')
     date_updated = models.DateTimeField(auto_now=True, verbose_name='Date Updated')
     
     def __str__(self):
-        return str(self.user)
+        return str(self.id)
     
     class Meta:
         verbose_name_plural = 'Profiles'
