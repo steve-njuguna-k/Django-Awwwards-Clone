@@ -131,3 +131,15 @@ def AddPortfolio(request):
 @login_required(login_url='Login')
 def EditProfile(request):
     return render(request, 'Edit Profile.html')
+
+@login_required(login_url='Login')
+def Settings(request):
+    return render(request, 'Settings.html')
+
+@login_required(login_url='Login')
+def MyProfile(request):
+    return render(request, 'My Profile.html')
+
+@login_required(login_url='Login')
+def MyPortfolio(request):
+    return render(request, 'My Portfolio.html')

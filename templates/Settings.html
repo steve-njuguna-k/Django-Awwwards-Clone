@@ -1,0 +1,87 @@
+{% extends "Base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="menu-container">
+        {% include 'Navbar.html' %}
+    </div>
+
+    <div class="container" style="margin-top: 70px;">
+        <center>
+            {% if messages %}
+                {% for message in messages %} 
+                <div class="alert {{message.tags}} m-1" role="alert" style="font-size: medium; margin-bottom: 30px;">
+                    {{message}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endfor %} 
+            {% endif %}
+        </center>
+        <h1 class="text-center py-1">Edit Profile Settings</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="bio layout-spacing ">
+                <div class="widget-content widget-content-area">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-8 mt-md-0 mt-4">
+                            <div class="settings-form">
+                                {% if user.profile.profile_image %}
+                                <center>
+                                    <img class="rounded-circle profile-pic" src="{{ user.profile.profile_image.url }}" alt="" height="250" width="250" style="margin-bottom: 30px;">
+                                </center>
+                                {% else %}
+                                <center>
+                                    <img src="https://icon-library.com/images/default-user-icon/default-user-icon-13.jpg" alt="" height="160" width="160" style="margin-bottom: 30px;">
+                                </center>
+                                {% endif %}
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control mb-4" id="api_name" name="api_name" placeholder="Old Password" required="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control mb-4" id="api_name" name="api_name" placeholder="New Password" required="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="helptext">
+                                    <ul>
+                                        <li>Your password can’t be too similar to your other personal information.</li>
+                                        <li>Your password must contain at least 8 characters.</li>
+                                        <li>Your password can’t be a commonly used password.</li>
+                                        <li>Your password can’t be entirely numeric.</li>
+                                    </ul>
+                                </span>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control mb-4" id="api_name" name="api_name" placeholder="Confirm Password" required="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">Save Changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>    
+
+    {% block footer %}
+        <footer class="page-footer">
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3 text-dark">
+                © Copyright 2022 Project Station
+            </div>
+            <!-- Copyright -->
+        </footer>
+    {% endblock %}
+
+{% endblock %}

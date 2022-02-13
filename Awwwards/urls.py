@@ -1,4 +1,5 @@
 import django
+from django.conf import Settings
 from Awwwards import views
 from django.urls import path
 from django.conf.urls.static import static
@@ -16,5 +17,8 @@ urlpatterns = [
     path('resetpassword/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(template_name='PasswordResetConfirm.html'), name = 'password_reset_confirm'),
     path('resetpassword/success/',auth_views.PasswordResetCompleteView.as_view(template_name='PasswordResetSuccess.html'), name = 'password_reset_complete'),
     path('portfolio/add', views.AddPortfolio, name="AddPortfolio"),
-    path('profile/edit', views.EditProfile, name="EditProfile")
+    path('profile/edit', views.EditProfile, name="EditProfile"),
+    path('profile/settings', views.Settings, name="Settings"),
+    path('profile/profile', views.MyProfile, name="MyProfile"),
+    path('profile/portfolio', views.MyPortfolio, name="MyPortfolio"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

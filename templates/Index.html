@@ -14,10 +14,8 @@
                 <form class="form" role="search" method="POST" action="" name="Search">
                     {% csrf_token %}
                     <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search For Portfolios & Categories" name="imageSearch">
+                        <input type="text" class="form-control" placeholder="Search For Portfolios & Categories" name="imageSearch">
                     </div>
-                    <br>
-                    <small>Trending searches: {% for category in trendingcategories %} <a class="trending-links" href="{% url 'ImagesInCategory' category.id %}"> <span class="badge badge badge-light">{{ category.name }}</span> </a> {% endfor %}</p>
                 </form>
             </div>
         </div>
@@ -124,7 +122,7 @@
         <footer class="page-footer">
             <!-- Copyright -->
             <div class="footer-copyright text-center py-3 text-dark">
-                © Copyright 2022 Django Awwwards
+                © Copyright 2022 Project Station
             </div>
             <!-- Copyright -->
         </footer>
