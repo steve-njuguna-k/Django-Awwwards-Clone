@@ -39,14 +39,14 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <input type="text" class="form-control mb-4" id="api_name" name="api_name" placeholder="Old Password" required="">
+                                            {{ form.old_password }}
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <input type="text" class="form-control mb-4" id="api_name" name="api_name" placeholder="New Password" required="">
+                                            {{ form.new_password1 }}
                                         </div>
                                     </div>
                                 </div>
@@ -61,7 +61,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <input type="text" class="form-control mb-4" id="api_name" name="api_name" placeholder="Confirm Password" required="">
+                                            {{ form.new_password2 }}
                                         </div>
                                     </div>
                                 </div>
