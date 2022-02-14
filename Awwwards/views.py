@@ -10,7 +10,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.template.loader import render_to_string
-from .models import Portfolio, Profile
+from .models import Portfolio, Profile, Rating
 from .tokens import account_activation_token
 from django.contrib.auth import update_session_auth_hash
 from .forms import AddPortfolioForm, PasswordChangeForm, UpdateProfileForm, UpdateUserForm
@@ -244,3 +244,31 @@ def Search(request):
         return render(request, 'Search Results.html', {'search':search, 'portfolios':portfolios})
     else:
         return render(request, 'Search Results.html')
+
+@login_required(login_url='Login')
+def PortfolioRating(request,id):
+    if request.method == 'POST':
+        portfolio = Portfolio.objects.get(id = id)
+        current_user = request.user
+        comment = request.POST['comment']
+        design_rating = request.POST['design_rating']
+        usability_rating = request.POST['usability_rating']
+        content_rating = request.POST['content_rating']
+        creativity_rating = request.POST['creativity_rating']
+        experience_rating = request.POST['experience_rating']
+
+        Rating.objects.create(
+            portfolio = portfolio,
+            author = current_user,
+            comment = comment,
+            design_rating = design_rating,
+            usability_rating = usability_rating,
+            content_rating = content_rating,
+            creativity_rating = creativity_rating,
+            experience_rating = experience_rating,
+            avarage_rate=round((float(design_rating) + float(usability_rating) + float(content_rating) + float(creativity_rating) + float(experience_rating))/5,2),)
+
+        return redirect('PortfolioDetails')
+    else:
+        portfolio = Portfolio.objects.get(id = id) 
+        return render(request,"Portfolio Details.html",{"portfolio":portfolio})
