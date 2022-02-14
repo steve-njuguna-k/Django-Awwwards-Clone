@@ -315,14 +315,13 @@ class Profile(models.Model):
         return self.profile_image.url if self.profile_image else static('assets/img/default.jpg')
 
 class Portfolio(models.Model):
-    profile_image = models.ImageField(upload_to='Portfolio-Pics', verbose_name='Portfolio  Image', null=False)
+    portfolio_image = models.ImageField(upload_to='Portfolio-Pics', verbose_name='Portfolio  Image', null=False)
     title = models.CharField(max_length=500, verbose_name='Title', null=False)
     caption = models.CharField(max_length=2200, verbose_name='Caption', null=False)
-    url = models.URLField(max_length=500, verbose_name="Webiste Link", null=False)
-    repo = models.URLField(max_length=500, verbose_name="GitHub Repository", null=False)
+    portfolio_site_url = models.URLField(max_length=500, verbose_name="Webiste Link", null=True, blank=True)
+    repo_url = models.URLField(max_length=500, verbose_name="GitHub Repository", null=False)
     primary_language = models.CharField(max_length=100, choices=LANGUAGES, verbose_name="Primary Programming Language", null=False)
     category = models.CharField(max_length=100, choices=CATEGORIES, verbose_name="Category", null=False)
-    country = models.CharField(max_length=100, choices=COUNTRIES, verbose_name="Country", null=False)
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Author')
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name='Profile')
     date_created = models.DateTimeField(auto_now_add=True, verbose_name='Date Created')

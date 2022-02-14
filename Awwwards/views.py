@@ -13,7 +13,7 @@ from django.template.loader import render_to_string
 from .models import Profile
 from .tokens import account_activation_token
 from django.contrib.auth import update_session_auth_hash
-from .forms import PasswordChangeForm, UpdateProfileForm, UpdateUserForm
+from .forms import AddPortfolioForm, PasswordChangeForm, UpdateProfileForm, UpdateUserForm
 from django.core.mail import EmailMessage
 from Core import settings
 import threading
@@ -129,7 +129,22 @@ def Home(request):
 
 @login_required(login_url='Login')
 def AddPortfolio(request):
-    return render(request, 'Add Portfolio.html')
+    form = AddPortfolioForm()
+    if request.method == "POST":
+        form = AddPortfolioForm(request.POST, request.FILES)
+        if form.is_valid():
+            portfolio = form.save(commit=False)
+            portfolio.author = request.user
+            portfolio.profile = request.user.profile
+            portfolio.save()
+            messages.success(request, '✅ Your Portfolio Was Created Successfully!')
+            return redirect('AddPortfolio')
+        else:
+            messages.error(request, "⚠️ Your Portfolio Wasn't Created!")
+            return redirect('AddPortfolio')
+    else:
+        form = AddPortfolioForm()
+    return render(request, 'Add Portfolio.html', {'form':form})
 
 @login_required(login_url='Login')
 def EditProfile(request, username):

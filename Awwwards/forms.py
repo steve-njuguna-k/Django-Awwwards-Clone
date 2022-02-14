@@ -1,9 +1,10 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import SetPasswordForm
-from .models import Profile
+from .models import Portfolio, Profile
 
 COUNTRIES = [ 
+    ('', ('Choose')), 
     ('Afganistan', ('Afghanistan')),
     ('Albania', ('Albania')),
     ('Algeria', ('Algeria')),
@@ -252,6 +253,44 @@ COUNTRIES = [
     ('Zimbabwe', ('Zimbabwe')), 
 ]
 
+CATEGORIES = [
+    ('', ('Choose')), 
+    ('For Practise', ('For Practise')),
+    ('Professional', ('Professional')),
+]
+
+LANGUAGES = [
+    ('', ('Choose')), 
+    ('C', ('C')), 
+    ('C++', ('C++')), 
+    ('C#', ('C#')), 
+    ('Erlang', ('Erlang')), 
+    ('Go', ('Go')), 
+    ('Haskell', ('Haskell')), 
+    ('HTML', ('HTML')), 
+    ('iOS', ('iOS')),
+    ('Java', ('Java')), 
+    ('Lua', ('Lua')), 
+    ('.NET', ('.NET')), 
+    ('Node', ('Node')), 
+    ('PHP', ('PHP')), 
+    ('Python', ('Python')), 
+    ('Ruby', ('Ruby')), 
+    ('Clojure', ('Clojure')),
+    ('Rust', ('Rust')), 
+    ('Android', ('Android')), 
+    ('Electron', ('Electron')), 
+    ('Flutter', ('Flutter')), 
+    ('Gatsby', ('Gatsby')), 
+    ('JavaScript', ('JavaScript')), 
+    ('Kotlin', ('Kotlin')), 
+    ('R', ('R')), 
+    ('Roku', ('Roku')),
+    ('Swift', ('Swift')), 
+    ('Xamarin', ('Xamarin')), 
+    ('Apex', ('Apex')), 
+]
+
 class UpdateUserForm(forms.ModelForm):
     first_name = forms.CharField(max_length=50, required=True, widget=forms.TextInput(attrs={'class': 'form-control mb-4'}))
     last_name = forms.CharField(max_length=50, required=True, widget=forms.TextInput(attrs={'class': 'form-control mb-4'}))
@@ -276,6 +315,19 @@ class UpdateProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['profile_image', 'profession', 'bio', 'country', 'personal_website', 'github_link', 'instagram_link', 'linkedin_link', 'twitter_link']
+
+class AddPortfolioForm(forms.ModelForm):
+    portfolio_image = forms.ImageField(required=False, widget=forms.FileInput(attrs={'class': 'dropify', 'data-height':225, 'data-max-file-size':"1M"}))
+    title = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control mb-4', 'placeholder':'Portfolio Title'}))
+    caption = forms.CharField(required=False, widget=forms.Textarea(attrs={'class': 'form-control mb-4', 'rows': 5, 'placeholder':'Portfolio Description'}))
+    category = forms.ChoiceField(choices=CATEGORIES, required=False, widget=forms.Select(attrs={'class': 'form-control mb-4', 'placeholder':'Select Category'}))
+    primary_language = forms.ChoiceField(choices=LANGUAGES, required=False, widget=forms.Select(attrs={'class': 'form-control mb-4', 'placeholder':'Select Language'}))
+    portfolio_site_url = forms.URLField(required=False, widget=forms.URLInput(attrs={'class': 'form-control mb-4', 'placeholder':'Portfolio URL'}))
+    repo_url = forms.URLField(required=False, widget=forms.URLInput(attrs={'class': 'form-control mb-4', 'placeholder':'GitHub Repository'}))
+
+    class Meta:
+        model = Portfolio
+        fields = ['portfolio_image', 'title', 'caption', 'category', 'primary_language', 'portfolio_site_url', 'repo_url']
 
 class PasswordChangeForm(SetPasswordForm):
     old_password = forms.CharField(required=True,
