@@ -54,9 +54,10 @@
                                 </div>
                                 <br>
                                 <div style="float: right;">
-                                    <a href="{% url 'EditPortfolio' user.username portfolio.title %}">
-                                        <button class="btn btn-success btn-sm" style="border-radius: 3px;">Edit Portfolio</button>
+                                    <a href="/profile/{{ portfolio.author.username }}/portfolio/{{ portfolio.id }}/edit">
+                                        <button class="btn btn-success btn-sm" style="border-radius: 3px;"><i class="fa-solid fa-edit"></i> Edit</button>
                                     </a>
+                                    <button class="btn btn-danger btn-sm" style="border-radius: 3px;" data-toggle="modal" data-target="#exampleModal{{ portfolio.id }}"><i class="fa-solid fa-trash"></i> Delete</button>
                                 </div>
                             </div>
                         </div>
@@ -66,6 +67,31 @@
     
         </div>
     </div>   
+
+    <!-- Modal -->
+    {% for portfolio in portfolio_details %}
+    <div class="modal fade" id="exampleModal{{ portfolio.id }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ portfolio.id }}" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel{{ portfolio.id }}">Delete Portfolio</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+            <p>Are you sure want to delete {{ portfolio.title }}? <span class="text-danger">(This can't be undone)</span></p> 
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <a href="/profile/{{portfolio.author.username}}/portfolio/{{portfolio.title}}/delete">
+                <button type="submit" class="btn btn-danger">Delete Portfolio</button>
+            </a>
+            </div>
+        </div>
+        </div>
+    </div>
+    {% endfor %}
 
     {% block footer %}
         <footer class="page-footer">

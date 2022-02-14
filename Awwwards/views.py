@@ -138,10 +138,10 @@ def AddPortfolio(request):
             portfolio.profile = request.user.profile
             portfolio.save()
             messages.success(request, '✅ Your Portfolio Was Created Successfully!')
-            return redirect('AddPortfolio')
+            return redirect('MyPortfolio')
         else:
             messages.error(request, "⚠️ Your Portfolio Wasn't Created!")
-            return redirect('AddPortfolio')
+            return redirect('MyPortfolio')
     else:
         form = AddPortfolioForm()
     return render(request, 'Add Portfolio.html', {'form':form})
@@ -191,8 +191,9 @@ def MyPortfolio(request, username):
     return render(request, 'My Portfolio.html', {'profile':profile, 'portfolio_details':portfolio_details})
 
 @login_required(login_url='Login')
-def EditPortfolio(request, username, title):
-    portfolio = Portfolio.objects.get(title=title)
+def EditPortfolio(request, username, id):
+    portfolio = Portfolio.objects.get(id=id)
+    print(portfolio)
     if request.method == 'POST':
         form = AddPortfolioForm(request.POST, request.FILES, instance=portfolio)
 
@@ -207,6 +208,17 @@ def EditPortfolio(request, username, title):
         form = AddPortfolioForm(instance=portfolio)
 
     return render(request, 'Edit Portfolio.html', {'form': form})
+
+@login_required(login_url='Login')
+def DeletePortfolio(request, username, title):
+    portfolio = Portfolio.objects.get(title=title)
+    if portfolio:
+        portfolio.delete()
+        messages.success(request, '✅ Your Portfolio Has Been Deleted Successfully!')
+        return redirect('MyPortfolio', username=username)
+    else:
+        messages.error(request, "⚠️ Your Portfolio Wasn't Deleted!")
+        return redirect('MyPortfolio', username=username)
 
 @login_required(login_url='Login')
 def MyProfile(request, username):
