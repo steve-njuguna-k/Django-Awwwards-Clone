@@ -225,7 +225,7 @@ def DeletePortfolio(request, username, title):
 def MyProfile(request, username):
     profile = User.objects.get(username=username)
     profile_details = Profile.objects.get(user = profile.id)
-    return render(request, 'My Profile.html', {'profile':profile, 'portfolio_details':profile_details})
+    return render(request, 'My Profile.html', {'profile':profile, 'profile_details':profile_details})
 
 def Search(request):
     if request.method == 'POST':

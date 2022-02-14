@@ -124,7 +124,12 @@
             </div>
 
             <div class="bio-skill-box">
-                <center><button type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">Save Changes</button></center>
+                <center>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block" style="margin-bottom: 10px;">Save Changes</button>
+                    <a href="{% url 'MyProfile' user.username %}">
+                        <button type="button" class="btn btn-dark btn-lg btn-block">Cancel</button>
+                    </a>
+                </center>
             </div>
         </form>
     </div>    
