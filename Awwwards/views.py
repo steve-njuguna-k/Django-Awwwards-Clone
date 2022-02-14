@@ -10,7 +10,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.template.loader import render_to_string
-from .models import Profile
+from .models import Portfolio, Profile
 from .tokens import account_activation_token
 from django.contrib.auth import update_session_auth_hash
 from .forms import AddPortfolioForm, PasswordChangeForm, UpdateProfileForm, UpdateUserForm
@@ -185,11 +185,13 @@ def Settings(request, username):
         return render(request, "Settings.html", {'form': form})
 
 @login_required(login_url='Login')
-def MyPortfolio(request):
-    return render(request, 'My Portfolio.html')
+def MyPortfolio(request, username):
+    profile = User.objects.get(username=username)
+    portfolio_details = Portfolio.objects.filter(author = profile.id).all()
+    return render(request, 'My Portfolio.html', {'profile':profile, 'portfolio_details':portfolio_details})
 
 @login_required(login_url='Login')
 def MyProfile(request, username):
     profile = User.objects.get(username=username)
     profile_details = Profile.objects.get(user = profile.id)
-    return render(request, 'My Profile.html', {'profile':profile, 'profile_details':profile_details})
+    return render(request, 'My Profile.html', {'profile':profile, 'portfolio_details':profile_details})

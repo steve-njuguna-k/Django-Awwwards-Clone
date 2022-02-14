@@ -1,0 +1,58 @@
+{% extends "Base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="menu-container">
+        {% include 'Navbar.html' %}
+    </div>
+
+    <div class="container" style="margin-top: 70px;">
+        <div class="main-body">
+        
+            <h1 class="text-center py-3">My Portfolio</h1>
+        
+            <div class="row">
+                {% for portfolio in portfolio_details %}
+                    <div class="col-sm-4">
+                        <div class="card shadow" style="margin-bottom: 30px; border-radius: 10px;">
+                            <img src="{{ portfolio.portfolio_image.url }}" class="card-img-top" style="border-radius: 10px 10px 0px 0px;" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ portfolio.title }}</h5>
+                                <p class="card-text text-muted">{{ portfolio.caption|truncatewords:25 }}</p>
+                                <div class="badge" style="float:left">
+                                    <p><span style="font-weight: lighter;">Language:</span> {{ portfolio.primary_language }}</p>
+                                </div>
+                                <div class="basge" style="float:right">
+                                    <h6><span class="badge badge-primary">{{ portfolio.category }}</span></h6>
+                                </div>
+                                <br>
+                                <hr>
+                                <div class="d-flex flex-row user-info">
+                                    <img class="rounded" src="{{ portfolio.profile.profile_image.url }}" height="40" width="40">
+                                    <div class="d-flex flex-column justify-content-start ml-2">
+                                        <a href="#">
+                                            <span class="name"><b>{{ portfolio.author.first_name }} {{ portfolio.author.last_name }}</b></span>
+                                        </a>
+                                        <span class="date"><i class="fas fa-calendar-alt"></i> {{ portfolio.date_created }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+    
+        </div>
+    </div>   
+
+    {% block footer %}
+        <footer class="page-footer">
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3 text-dark">
+                © Copyright 2022 Project Station
+            </div>
+            <!-- Copyright -->
+        </footer>
+    {% endblock %}
+
+{% endblock %}
