@@ -231,6 +231,12 @@ def PortfolioDetails(request, title):
     portfolio = Portfolio.objects.get(title=title)
     return render(request, 'Portfolio Details.html', {'portfolio':portfolio})
 
+def UserProfile(request, username):
+    profile = User.objects.get(username=username)
+    profile_details = Profile.objects.get(user = profile.id)
+    portfolio_details = Portfolio.objects.filter(author = profile.id).all()
+    return render(request, 'User Profile.html', {'profile':profile, 'profile_details':profile_details, 'portfolio_details':portfolio_details})
+
 def Search(request):
     if request.method == 'POST':
         search = request.POST['imageSearch']
