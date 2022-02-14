@@ -7,6 +7,18 @@
     </div>
 
     <div class="container" style="margin-top: 70px;">
+        <center>
+            {% if messages %}
+                {% for message in messages %} 
+                <div class="alert {{message.tags}} m-1" role="alert" style="font-size: medium; margin-bottom: 30px;">
+                    {{message}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endfor %} 
+            {% endif %}
+        </center>
         <div class="main-body">
         
             <h1 class="text-center py-3">My Profile</h1>
@@ -120,7 +132,7 @@
                                         <h6 class="mb-0">Username</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        {{ profile_details.user.username }}
+                                        {{ profile_details.author.username }}
                                     </div>
                                 </div>
                                 <hr>
@@ -129,7 +141,7 @@
                                         <h6 class="mb-0">First Name</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        {{ profile_details.user.first_name }}
+                                        {{ profile_details.author.first_name }}
                                     </div>
                                 </div>
                                 <hr>
@@ -138,7 +150,7 @@
                                         <h6 class="mb-0">Last Name</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        {{ profile_details.user.last_name }}
+                                        {{ profile_details.author.last_name }}
                                     </div>
                                 </div>
                                 <hr>
@@ -147,7 +159,7 @@
                                         <h6 class="mb-0">Email Address</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        {{ profile_details.user.email }}
+                                        {{ profile_details.author.email }}
                                     </div>
                                 </div>
                                 <hr>

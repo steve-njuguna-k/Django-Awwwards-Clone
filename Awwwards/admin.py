@@ -3,7 +3,7 @@ from .models import Profile, Portfolio
 
 # Register your models here.
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'email_confirmed', 'date_created', 'date_updated')
+    list_display = ('author', 'email_confirmed', 'date_created', 'date_updated')
     search_fields = []
     readonly_fields=('date_created', 'date_updated')
     

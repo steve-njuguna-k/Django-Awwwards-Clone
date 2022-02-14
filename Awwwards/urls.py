@@ -30,4 +30,6 @@ urlpatterns = [
 
     path('api/portfolio/', api_views.PortfolioAPI.as_view(), name="PortfolioAPI"),
     path('api/portfolio/<int:pk>/', api_views.PortfolioDetailAPI.as_view(), name="PortfolioDetailAPI"),
+    path('api/profile/', api_views.ProfileAPI.as_view(), name="ProfileAPI"),
+    path('api/profile/<int:pk>/', api_views.ProfileDetailAPI.as_view(), name="ProfileDetailAPI"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

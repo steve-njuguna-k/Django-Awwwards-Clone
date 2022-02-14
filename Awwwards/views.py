@@ -139,7 +139,7 @@ def EditProfile(request, username):
             user_form.save()
             profile_form.save()
             messages.success(request, '✅ Your Profile Has Been Updated Successfully!')
-            return redirect('EditProfile', username=username)
+            return redirect('MyProfile', username=username)
         else:
             messages.error(request, "⚠️ Your Profile Wasn't Updated!")
             return redirect('EditProfile', username=username)
@@ -183,10 +183,10 @@ def AddPortfolio(request):
             portfolio.profile = request.user.profile
             portfolio.save()
             messages.success(request, '✅ Your Portfolio Was Created Successfully!')
-            return redirect('MyPortfolio')
+            return redirect('Home')
         else:
             messages.error(request, "⚠️ Your Portfolio Wasn't Created!")
-            return redirect('MyPortfolio')
+            return redirect('AddPortfolio')
     else:
         form = AddPortfolioForm()
     return render(request, 'Add Portfolio.html', {'form':form})
@@ -224,7 +224,7 @@ def DeletePortfolio(request, username, title):
 @login_required(login_url='Login')
 def MyProfile(request, username):
     profile = User.objects.get(username=username)
-    profile_details = Profile.objects.get(user = profile.id)
+    profile_details = Profile.objects.get(author = profile.id)
     return render(request, 'My Profile.html', {'profile':profile, 'profile_details':profile_details})
 
 def PortfolioDetails(request, title):
@@ -233,7 +233,7 @@ def PortfolioDetails(request, title):
 
 def UserProfile(request, username):
     profile = User.objects.get(username=username)
-    profile_details = Profile.objects.get(user = profile.id)
+    profile_details = Profile.objects.get(author = profile.id)
     portfolio_details = Portfolio.objects.filter(author = profile.id).all()
     return render(request, 'User Profile.html', {'profile':profile, 'profile_details':profile_details, 'portfolio_details':portfolio_details})
 
