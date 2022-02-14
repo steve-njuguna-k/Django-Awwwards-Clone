@@ -191,6 +191,24 @@ def MyPortfolio(request, username):
     return render(request, 'My Portfolio.html', {'profile':profile, 'portfolio_details':portfolio_details})
 
 @login_required(login_url='Login')
+def EditPortfolio(request, username, title):
+    portfolio = Portfolio.objects.get(title=title)
+    if request.method == 'POST':
+        form = AddPortfolioForm(request.POST, request.FILES, instance=portfolio)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, '✅ Your Portfolio Has Been Updated Successfully!')
+            return redirect('MyPortfolio', username=username)
+        else:
+            messages.error(request, "⚠️ Your Portfolio Wasn't Updated!")
+            return redirect('EditPortfolio', username=username)
+    else:
+        form = AddPortfolioForm(instance=portfolio)
+
+    return render(request, 'Edit Portfolio.html', {'form': form})
+
+@login_required(login_url='Login')
 def MyProfile(request, username):
     profile = User.objects.get(username=username)
     profile_details = Profile.objects.get(user = profile.id)
