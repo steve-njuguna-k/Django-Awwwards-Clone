@@ -23,98 +23,53 @@
 
     <!--Main Section-->
     <div class="main-section">
-        <h5 class="py-4"><b>Sites of the day</b> | <span style="font-weight: lighter;">Previous Winners</span></h5>
+        <h5 class="py-4"><b>Featured Projects</b> | <span style="font-weight: lighter;">From Talented Software Developers</span></h5>
         <div class="row">
-            <div class="col-sm-4">
-                <div class="card shadow" style="margin-bottom: 30px; border-radius: 10px;">
-                    <img src="https://wallpaperaccess.com/full/486595.jpg" class="card-img-top" style="border-radius: 10px 10px 0px 0px;" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text text-muted">With supporting text below as a natural lead-in to additional content.</p>
-                        <div class="badge" style="float:left">
-                            <h6><span style="font-weight: lighter;">From:</span> Kenya</h6>
-                        </div>
-                        <div class="badge" style="float:right">
-                            <h6><span class="badge badge-primary">Corporate</span></h6>
-                        </div>
-                        <br>
-                        <hr>
-                        <div class="d-flex flex-row user-info">
-                            <img class="rounded" src="https://img.icons8.com/bubbles/50/000000/short-curly-hair-girl-musical-notes.png" height="40" width="40">
-                            <div class="d-flex flex-column justify-content-start ml-2">
-                                <a href="#">
-                                    <span class="name"><b>Steve Njuguna</b></span>
-                                </a>
-                                <span class="date"><i class="fas fa-calendar-alt"></i> 12th Feb 2022</span>
+            {% if portfolios %}
+                <div class="row">
+                    {% for portfolio in portfolios %}
+                        <div class="col-sm-4">
+                            <div class="card shadow" style="margin-bottom: 30px; border-radius: 10px;">
+                                <img src="{{ portfolio.portfolio_image.url }}" class="card-img-top" style="border-radius: 10px 10px 0px 0px;" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ portfolio.title }}</h5>
+                                    <p class="card-text text-muted">{{ portfolio.caption|truncatewords:25 }}</p>
+                                    <div class="badge" style="float:left">
+                                        <h6><span style="font-weight: lighter;">Language:</span> {{ portfolio.primary_language }}</h6>
+                                    </div>
+                                    <div class="basge" style="float:right">
+                                        <h6><span class="badge badge-primary">{{ portfolio.category }}</span></h6>
+                                    </div>
+                                    <br>
+                                    <hr>
+                                    <div class="d-flex flex-row user-info">
+                                        {% if portfolio.profile.profile_image.url %}
+                                            <img class="rounded" src="{{ portfolio.profile.profile_image.url }}" height="40" width="40">
+                                        {% else %}
+                                            <img class="rounded" src="https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-8.png" height="40" width="40">
+                                        {% endif %}
+                                        <div class="d-flex flex-column justify-content-start ml-2">
+                                            <a href="#">
+                                                <span class="name"><b>{{ portfolio.author.first_name }} {{ portfolio.author.last_name }}</b></span>
+                                            </a>
+                                            <span class="date"><i class="fas fa-calendar-alt"></i> {{ portfolio.date_created }}</span>
+                                        </div>
+                                        <br>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    {% endfor %}
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="main-section">
-        <h5 class="py-4"><b>Nominees</b> | <span style="font-weight: lighter;">We need your vote!</span></h5>
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="card shadow" style="margin-bottom: 30px; border-radius: 10px;">
-                    <img src="https://wallpaperaccess.com/full/486595.jpg" class="card-img-top" style="border-radius: 10px 10px 0px 0px;" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text text-muted">With supporting text below as a natural lead-in to additional content.</p>
-                        <div class="badge" style="float:left">
-                            <h6><span style="font-weight: lighter;">From:</span> Kenya</h6>
-                        </div>
-                        <div class="basge" style="float:right">
-                            <h6><span class="badge badge-primary">Corporate</span></h6>
-                        </div>
+                {% else %}
+                <div class="col-sm-12" style="margin-top: 20px;">
+                    <div class="content text-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M20 2H8c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zM8 16V4h12l.002 12H8z"></path><path d="M4 8H2v12c0 1.103.897 2 2 2h12v-2H4V8z"></path><path d="m12 12-1-1-2 3h10l-4-6z"></path></svg>
                         <br>
-                        <hr>
-                        <div class="d-flex flex-row user-info">
-                            <img class="rounded" src="https://img.icons8.com/bubbles/50/000000/short-curly-hair-girl-musical-notes.png" height="40" width="40">
-                            <div class="d-flex flex-column justify-content-start ml-2">
-                                <a href="#">
-                                    <span class="name"><b>Steve Njuguna</b></span>
-                                </a>
-                                <span class="date"><i class="fas fa-calendar-alt"></i> 12th Feb 2022</span>
-                            </div>
-                        </div>
-                    </div>
+                        <h4 class="text-dark py-3">No Associated Portfolio Found</h4>
+                    </div> 
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="main-section">
-        <h5 class="py-4"><b>Directory</b> | <span style="font-weight: lighter;">Find the Best Digital Agencies & Professionals</span></h5>
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="card shadow" style="margin-bottom: 30px; border-radius: 10px;">
-                    <img src="https://wallpaperaccess.com/full/486595.jpg" class="card-img-top" style="border-radius: 10px 10px 0px 0px;" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text text-muted">With supporting text below as a natural lead-in to additional content.</p>
-                        <div class="badge" style="float:left">
-                            <h6><span style="font-weight: lighter;">From:</span> Kenya</h6>
-                        </div>
-                        <div class="basge" style="float:right">
-                            <h6><span class="badge badge-primary">Corporate</span></h6>
-                        </div>
-                        <br>
-                        <hr>
-                        <div class="d-flex flex-row user-info">
-                            <img class="rounded" src="https://img.icons8.com/bubbles/50/000000/short-curly-hair-girl-musical-notes.png" height="40" width="40">
-                            <div class="d-flex flex-column justify-content-start ml-2">
-                                <a href="#">
-                                    <span class="name"><b>Steve Njuguna</b></span>
-                                </a>
-                                <span class="date"><i class="fas fa-calendar-alt"></i> 12th Feb 2022</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                {% endif %}
         </div>
     </div>
 

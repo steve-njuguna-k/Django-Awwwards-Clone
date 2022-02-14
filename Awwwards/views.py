@@ -125,7 +125,8 @@ def Logout(request):
     return redirect('Home')
 
 def Home(request):
-    return render(request, 'Index.html')
+    portfolios = Portfolio.objects.all()
+    return render(request, 'Index.html', {'portfolios':portfolios})
 
 @login_required(login_url='Login')
 def AddPortfolio(request):
