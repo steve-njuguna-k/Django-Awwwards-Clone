@@ -30,7 +30,9 @@
                     {% for portfolio in portfolios %}
                         <div class="col-sm-4">
                             <div class="card shadow" style="margin-bottom: 30px; border-radius: 10px;">
-                                <img src="{{ portfolio.portfolio_image.url }}" class="card-img-top" style="border-radius: 10px 10px 0px 0px;" alt="...">
+                                <a href="{% url 'PortfolioDetails' portfolio.title %}" name="">
+                                    <img src="{{ portfolio.portfolio_image.url }}" class="card-img-top" style="border-radius: 10px 10px 0px 0px;" alt="...">
+                                </a>
                                 <div class="card-body">
                                     <h5 class="card-title">{{ portfolio.title }}</h5>
                                     <p class="card-text text-muted">{{ portfolio.caption|truncatewords:25 }}</p>

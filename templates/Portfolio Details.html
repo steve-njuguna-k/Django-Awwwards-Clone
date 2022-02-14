@@ -1,0 +1,208 @@
+{% extends "Base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container-fluid">
+        {% include 'Navbar.html' %}
+    </div>
+
+    <!-- Landing Page -->
+        <div class="banner">
+            <div class="cover">
+                <div class="container">
+                    <center>
+                        <h1 class="text-light" style="font-size: 72px; padding-top: 75px;">{{ portfolio.title }}</span></h1>
+                        <h1 class="text-light">{{ portfolio.category }}</span></h1>
+                    </center>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid" style="margin-top: 50px;">
+            <div class="row">
+                <div class="col-md-8">
+                    <a href="#">
+                        <img id="img{{portfolio.id}}" src="{{portfolio.portfolio_image.url}}" class="fluid img-thumbnail" alt="portfolio" style="cursor:pointer">
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <p class="desc text-muted">{{portfolio.caption}}</p>
+                    <div class="card mt-3">
+                        <ul class="list-group list-group-flush">
+                            {% if portfolio.portfolio_site_url %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="24" height="24" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="#171515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10a15.3 15.3 0 0 1-4 10a15.3 15.3 0 0 1-4-10a15.3 15.3 0 0 1 4-10z"/></g></svg> Website</h6>
+                                <a href="{{ portfolio.portfolio_site_url }}" target="_blank">
+                                    <span class="text-primary"><i class="fa-solid fa-link"></i> Link</span>
+                                </a>
+                            </li>
+                            {% else %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="24" height="24" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="#171515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10a15.3 15.3 0 0 1-4 10a15.3 15.3 0 0 1-4-10a15.3 15.3 0 0 1 4-10z"/></g></svg> Website</h6>
+                                <a href="#">
+                                    <span class="text-primary disabled"><i class="fa-solid fa-link"></i> None</span>
+                                </a>
+                            </li>
+                            {% endif %}
+                            {% if portfolio.repo_url %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="24" height="24" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="#171515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77A5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></g></svg> Github</h6>
+                                <a href="{{ portfolio.repo_url }}" target="_blank">
+                                    <span class="text-primary"><i class="fa-solid fa-link"></i> Link</span>
+                                </a>
+                            </li>
+                            {% else %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="24" height="24" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="#171515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77A5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></g></svg> Github</h6>
+                                <a href="#">
+                                    <span class="text-primary disabled"><i class="fa-solid fa-link"></i> None</span>
+                                </a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <br>
+                    <h4 class ="desc text-dark">Primary Programming Language</h4>
+                    <p class="desc text-muted">{{portfolio.primary_language}}</p>
+                    <h4 class ="desc text-dark">Uploaded By</h4>
+                    <div class="d-flex flex-row user-info">
+                        {% if portfolio.profile.profile_image.url %}
+                            <img class="rounded" src="{{ portfolio.profile.profile_image.url }}" height="40" width="40">
+                        {% else %}
+                            <img class="rounded" src="https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-8.png" height="40" width="40">
+                        {% endif %}
+                        <div class="d-flex flex-column justify-content-start ml-2">
+                            <a href="#">
+                                <span class="name"><b>{{ portfolio.author.first_name }} {{ portfolio.author.last_name }}</b></span>
+                            </a>
+                            <span class="date"><i class="fas fa-calendar-alt"></i> {{ portfolio.date_created }}</span>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <hr>
+        </div>
+
+        <div class="container-fluid" style="margin-top: 50px;">
+            <div class="row">
+                <div class="col-md-5 mb-3">
+                    <div class="bg-white rounded shadow p-4 mb-4 clearfix graph-star-rating">
+                        <h5 class="mb-1 text-center">Ratings and Reviews</h5>
+                        <div class="graph-star-rating-header">
+                            <h1 class="text-black mb-4 mt-2 text-center">3.5</h1>
+                        </div>
+                        <div class="graph-star-rating-body">
+                            <div class="rating-list">
+                                <div class="rating-list-left text-black">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M20 3H4c-1.103 0-2 .897-2 2v11c0 1.103.897 2 2 2h7v2H8v2h8v-2h-3v-2h7c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zM4 14V5h16l.002 9H4z"></path></svg>
+                                </div>
+                                <div class="rating-list-center">
+                                    <div class="progress">
+                                        <div style="width: 56%" aria-valuemax="5" aria-valuemin="0" aria-valuenow="5" role="progressbar" class="progress-bar bg-primary">
+                                            <span class="sr-only">80% Complete (danger)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rating-list-right text-black">56%</div>
+                            </div>
+                            <div class="rating-list">
+                                <div class="rating-list-left text-black">
+                                    Usability
+                                </div>
+                                <div class="rating-list-center">
+                                    <div class="progress">
+                                        <div style="width: 23%" aria-valuemax="5" aria-valuemin="0" aria-valuenow="5" role="progressbar" class="progress-bar bg-primary">
+                                            <span class="sr-only">80% Complete (danger)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rating-list-right text-black">23%</div>
+                            </div>
+                            <div class="rating-list">
+                                <div class="rating-list-left text-black">
+                                    Creativity
+                                </div>
+                                <div class="rating-list-center">
+                                    <div class="progress">
+                                        <div style="width: 11%" aria-valuemax="5" aria-valuemin="0" aria-valuenow="5" role="progressbar" class="progress-bar bg-primary">
+                                            <span class="sr-only">80% Complete (danger)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rating-list-right text-black">11%</div>
+                            </div>
+                            <div class="rating-list">
+                                <div class="rating-list-left text-black">
+                                    Content
+                                </div>
+                                <div class="rating-list-center">
+                                    <div class="progress">
+                                        <div style="width: 7%" aria-valuemax="5" aria-valuemin="0" aria-valuenow="5" role="progressbar" class="progress-bar bg-primary">
+                                            <span class="sr-only">80% Complete (danger)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rating-list-right text-black">7%</div>
+                            </div>
+                            <div class="rating-list">
+                                <div class="rating-list-left text-black">
+                                    Experience
+                                </div>
+                                <div class="rating-list-center">
+                                    <div class="progress">
+                                        <div style="width: 2%" aria-valuemax="5" aria-valuemin="0" aria-valuenow="5" role="progressbar" class="progress-bar bg-primary">
+                                            <span class="sr-only">80% Complete (danger)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rating-list-right text-black">02%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-md-7">
+                    <div class="bg-white rounded shadow p-4 mb-4 restaurant-detailed-ratings-and-reviews">
+                        <a href="#" class="btn btn-outline-primary btn-sm float-right">Add A Review</a>
+                        <h5 class="mb-1">All Reviews</h5>
+                        <div class="reviews-members pt-4 pb-4">
+                            <div class="media">
+                                <a href="#"><img alt="Generic placeholder image" src="http://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-pill"></a>
+                                <div class="media-body">
+                                    <div class="reviews-members-header">
+                                        <span class="star-rating float-right">
+                                              <a href="#"><i class="icofont-ui-rating active"></i></a>
+                                              <a href="#"><i class="icofont-ui-rating active"></i></a>
+                                              <a href="#"><i class="icofont-ui-rating active"></i></a>
+                                              <a href="#"><i class="icofont-ui-rating active"></i></a>
+                                              <a href="#"><i class="icofont-ui-rating"></i></a>
+                                              </span>
+                                        <h6 class="mb-1"><a class="text-black" href="#">Singh Osahan</a></h6>
+                                        <p class="text-gray">Tue, 20 Mar 2020</p>
+                                    </div>
+                                    <div class="reviews-members-body">
+                                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% block footer %}
+        <footer class="page-footer">
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3 text-dark">
+                © Copyright 2022 Project Station
+            </div>
+            <!-- Copyright -->
+        </footer>
+    {% endblock %}
+    
+{% endblock %}

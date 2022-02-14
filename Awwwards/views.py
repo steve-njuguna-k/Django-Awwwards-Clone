@@ -129,25 +129,6 @@ def Home(request):
     return render(request, 'Index.html', {'portfolios':portfolios})
 
 @login_required(login_url='Login')
-def AddPortfolio(request):
-    form = AddPortfolioForm()
-    if request.method == "POST":
-        form = AddPortfolioForm(request.POST, request.FILES)
-        if form.is_valid():
-            portfolio = form.save(commit=False)
-            portfolio.author = request.user
-            portfolio.profile = request.user.profile
-            portfolio.save()
-            messages.success(request, '✅ Your Portfolio Was Created Successfully!')
-            return redirect('MyPortfolio')
-        else:
-            messages.error(request, "⚠️ Your Portfolio Wasn't Created!")
-            return redirect('MyPortfolio')
-    else:
-        form = AddPortfolioForm()
-    return render(request, 'Add Portfolio.html', {'form':form})
-
-@login_required(login_url='Login')
 def EditProfile(request, username):
     user = User.objects.get(username=username)
     if request.method == 'POST':
@@ -192,6 +173,25 @@ def MyPortfolio(request, username):
     return render(request, 'My Portfolio.html', {'profile':profile, 'portfolio_details':portfolio_details})
 
 @login_required(login_url='Login')
+def AddPortfolio(request):
+    form = AddPortfolioForm()
+    if request.method == "POST":
+        form = AddPortfolioForm(request.POST, request.FILES)
+        if form.is_valid():
+            portfolio = form.save(commit=False)
+            portfolio.author = request.user
+            portfolio.profile = request.user.profile
+            portfolio.save()
+            messages.success(request, '✅ Your Portfolio Was Created Successfully!')
+            return redirect('MyPortfolio')
+        else:
+            messages.error(request, "⚠️ Your Portfolio Wasn't Created!")
+            return redirect('MyPortfolio')
+    else:
+        form = AddPortfolioForm()
+    return render(request, 'Add Portfolio.html', {'form':form})
+
+@login_required(login_url='Login')
 def EditPortfolio(request, username, id):
     portfolio = Portfolio.objects.get(id=id)
     print(portfolio)
@@ -226,6 +226,10 @@ def MyProfile(request, username):
     profile = User.objects.get(username=username)
     profile_details = Profile.objects.get(user = profile.id)
     return render(request, 'My Profile.html', {'profile':profile, 'profile_details':profile_details})
+
+def PortfolioDetails(request, title):
+    portfolio = Portfolio.objects.get(title=title)
+    return render(request, 'Portfolio Details.html', {'portfolio':portfolio})
 
 def Search(request):
     if request.method == 'POST':
