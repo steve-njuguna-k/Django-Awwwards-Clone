@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'Awwwards',
     'django_cleanup.apps.CleanupConfig',
     'cloudinary',
-    'restframework',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

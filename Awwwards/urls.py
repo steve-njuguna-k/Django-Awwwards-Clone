@@ -1,6 +1,7 @@
 import django
 from django.conf import Settings
 from Awwwards import views
+from Awwwards import api_views
 from django.urls import path
 from django.conf.urls.static import static
 from Core import settings
@@ -26,4 +27,7 @@ urlpatterns = [
     path('user/<str:username>', views.UserProfile, name="UserProfile"),
     path('profile/<str:username>/portfolio', views.MyPortfolio, name="MyPortfolio"),
     path('search', views.Search, name="Search"),
+
+    path('api/portfolio/', api_views.PortfolioAPI.as_view(), name="PortfolioAPI"),
+    path('api/portfolio/<int:pk>/', api_views.PortfolioDetailAPI.as_view(), name="PortfolioDetailAPI"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
