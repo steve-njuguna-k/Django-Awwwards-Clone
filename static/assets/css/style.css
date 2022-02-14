@@ -359,25 +359,27 @@ padding-top: 50px;
 }
 
 .banner-2{
-  background: url(../img/landing2.jpg) no-repeat 0px 0px;
+  background: url('https://images.squarespace-cdn.com/content/v1/5848ed4ce3df28b7b588cef9/1627969008077-LCLIPR9D329ZKQXY4SQD/Artboard+1.png?format=2500w') no-repeat 0px 0px;
   background-size:cover;
   -webkit-background-size: cover;
   -o-background-size: cover;
   -ms-background-size: cover;
   -moz-background-size: cover;
   min-height: 280px;
+  padding-top: 50px;
 }
 
 .cover{
-  min-height: 350px;
-  width: inherit;
-  background: rgba(0,0,0,0.5)
+	min-height: 350px;
+	width: inherit;
+	background: rgba(0,0,0,0.5)
 }
 
 .cover-1{
-  min-height: inherit;
-  width: inherit;
-  background: rgba(0,0,0,0.5)
+	min-height: 350px;
+	min-height: inherit;
+	width: inherit;
+	background: rgba(0,0,0,0.5)
 }
 
 .cover-2{

@@ -23,4 +23,5 @@ urlpatterns = [
     path('profile/<str:username>/settings', views.Settings, name="Settings"),
     path('profile/<str:username>/profile', views.MyProfile, name="MyProfile"),
     path('profile/<str:username>/portfolio', views.MyPortfolio, name="MyPortfolio"),
+    path('search', views.Search, name="Search"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

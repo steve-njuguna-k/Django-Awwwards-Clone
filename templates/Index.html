@@ -11,10 +11,10 @@
         <div class="cover">
             <div class="container image">
                 <h2 id="category">Awarding Design, Creativity & Innovation on the Internet.</h2>
-                <form class="form" role="search" method="POST" action="" name="Search">
+                <form class="form" role="search" method="POST" action="{% url 'Search' %}" name="Search">
                     {% csrf_token %}
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search For Portfolios & Categories" name="imageSearch">
+                        <input type="text" class="form-control" placeholder="Search For A Portfolio" name="imageSearch">
                     </div>
                 </form>
             </div>
