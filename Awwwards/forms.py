@@ -263,7 +263,8 @@ class UpdateUserForm(forms.ModelForm):
         fields = ['first_name', 'last_name', 'username', 'email']
 
 class UpdateProfileForm(forms.ModelForm):
-    profile_image = forms.ImageField(required=False, widget=forms.FileInput(attrs={'class': 'dropify', 'data-height':320, 'data-max-file-size':"1M"}))
+    profile_image = forms.ImageField(required=False, widget=forms.FileInput(attrs={'class': 'dropify', 'data-height':420, 'data-max-file-size':"1M"}))
+    profession = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control mb-4', 'placeholder':'Profession'}))
     bio = forms.CharField(required=False, widget=forms.Textarea(attrs={'class': 'form-control mb-4', 'rows': 5, 'placeholder':'Keep it short, preferably in one concise sentence'}))
     country = forms.ChoiceField(choices=COUNTRIES, required=False, widget=forms.Select(attrs={'class': 'form-control mb-4', 'placeholder':'Select Country'}))
     personal_website = forms.URLField(required=False, widget=forms.URLInput(attrs={'class': 'form-control mb-4', 'placeholder':'Link'}))
@@ -274,7 +275,7 @@ class UpdateProfileForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ['profile_image', 'bio', 'country', 'personal_website', 'github_link', 'instagram_link', 'linkedin_link', 'twitter_link']
+        fields = ['profile_image', 'profession', 'bio', 'country', 'personal_website', 'github_link', 'instagram_link', 'linkedin_link', 'twitter_link']
 
 class PasswordChangeForm(SetPasswordForm):
     old_password = forms.CharField(required=True,

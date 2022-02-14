@@ -10,6 +10,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.template.loader import render_to_string
+from .models import Profile
 from .tokens import account_activation_token
 from django.contrib.auth import update_session_auth_hash
 from .forms import PasswordChangeForm, UpdateProfileForm, UpdateUserForm
@@ -152,10 +153,6 @@ def EditProfile(request, username):
     return render(request, 'Edit Profile.html', {'user_form': user_form, 'profile_form': profile_form})
 
 @login_required(login_url='Login')
-def Settings(request):
-    return render(request, 'Settings.html')
-
-@login_required(login_url='Login')
 def Settings(request, username):
     username = User.objects.get(username=username)
     if request.method == "POST":
@@ -177,5 +174,7 @@ def MyPortfolio(request):
     return render(request, 'My Portfolio.html')
 
 @login_required(login_url='Login')
-def MyProfile(request):
-    return render(request, 'My Profile.html')
+def MyProfile(request, username):
+    profile = User.objects.get(username=username)
+    profile_details = Profile.objects.get(user = profile.id)
+    return render(request, 'My Profile.html', {'profile':profile, 'profile_details':profile_details})

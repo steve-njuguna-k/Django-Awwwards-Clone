@@ -291,6 +291,7 @@ LANGUAGES = [
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='User')
+    profession = models.CharField(max_length=150, verbose_name='Profession', null=True, blank=True)
     bio = models.TextField(max_length=150, verbose_name='Bio', null=True, blank=True)
     profile_image = models.ImageField(upload_to='Profile-Pics', verbose_name='Profile Image', null=True, blank=True)
     country = models.CharField(max_length=100, choices=COUNTRIES, verbose_name="Country", null=True, blank=True)

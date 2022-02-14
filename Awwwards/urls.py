@@ -19,6 +19,6 @@ urlpatterns = [
     path('portfolio/add', views.AddPortfolio, name="AddPortfolio"),
     path('profile/<str:username>/edit', views.EditProfile, name="EditProfile"),
     path('profile/<str:username>/settings', views.Settings, name="Settings"),
-    path('profile/profile', views.MyProfile, name="MyProfile"),
+    path('profile/<str:username>/profile', views.MyProfile, name="MyProfile"),
     path('profile/portfolio', views.MyPortfolio, name="MyPortfolio"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
