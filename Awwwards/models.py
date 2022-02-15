@@ -2,6 +2,7 @@ from sre_parse import CATEGORIES
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf.urls.static import static
+from cloudinary.models import CloudinaryField
 
 COUNTRIES = [ 
     ('Afganistan', ('Afghanistan')),
@@ -293,7 +294,7 @@ class Profile(models.Model):
     author = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='User')
     profession = models.CharField(max_length=150, verbose_name='Profession', null=True, blank=True)
     bio = models.TextField(max_length=150, verbose_name='Bio', null=True, blank=True)
-    profile_image = models.ImageField(upload_to='Profile-Pics', verbose_name='Profile Image', null=True, blank=True)
+    profile_image = CloudinaryField('profile_image')
     country = models.CharField(max_length=100, choices=COUNTRIES, verbose_name="Country", null=True, blank=True)
     personal_website = models.URLField(max_length=500, verbose_name="Personal Website", null=True, blank=True)
     github_link = models.URLField(max_length=500, verbose_name="GitHub Link", null=True, blank=True)
@@ -315,7 +316,7 @@ class Profile(models.Model):
         return self.profile_image.url if self.profile_image else static('assets/img/default.jpg')
 
 class Portfolio(models.Model):
-    portfolio_image = models.ImageField(upload_to='Portfolio-Pics', verbose_name='Portfolio  Image', null=False)
+    portfolio_image = CloudinaryField('portfolio_image')
     title = models.CharField(max_length=500, verbose_name='Title', null=False)
     caption = models.CharField(max_length=2200, verbose_name='Caption', null=False)
     portfolio_site_url = models.URLField(max_length=500, verbose_name="Webiste Link", null=True, blank=True)
