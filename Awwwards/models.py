@@ -334,6 +334,29 @@ class Portfolio(models.Model):
     class Meta:
         verbose_name_plural = 'Portfolio'
 
+    def get_portfolio_by_id(id):
+        portfolio = Portfolio.objects.get(id=id)
+        return portfolio
+
+    def get_all_portfolio():
+        all_portfolio = Portfolio.objects.all()
+        return all_portfolio
+
+    def get_all_portfolio_by_user(user):
+        portfolio = Portfolio.objects.filter(author=user)
+        return portfolio
+
+    def update_portfolio(self, **kwargs):
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+        self.save()
+
+    def save_portfolio(self):
+        self.save()
+
+    def delete_portfolio(self):
+        self.delete()
+
 class Rating(models.Model):
     comment = models.CharField(max_length=2200, verbose_name='Comment', null=False)
     design_rating = models.IntegerField(default=0, null=False)
