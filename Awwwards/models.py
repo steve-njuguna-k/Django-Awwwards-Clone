@@ -334,8 +334,6 @@ class Portfolio(models.Model):
         verbose_name_plural = 'Portfolio'
 
 class Rating(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    portfolio = models.ForeignKey(Portfolio, on_delete=models.CASCADE)
     comment = models.CharField(max_length=2200, verbose_name='Comment', null=False)
     design_rating = models.IntegerField(default=0, null=False)
     usability_rating = models.IntegerField(default=0, null=False)
@@ -343,6 +341,11 @@ class Rating(models.Model):
     creativity_rating = models.IntegerField(default=0, null=False)
     experience_rating = models.IntegerField(default=0, null=False)
     avarage_rating = models.IntegerField(default=0, null=False)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name='Profile')
+    portfolio = models.ForeignKey(Portfolio, on_delete=models.CASCADE)
+    date_created = models.DateTimeField(auto_now_add=True, verbose_name='Date Created')
+    date_updated = models.DateTimeField(auto_now=True, verbose_name='Date Updated')
 
     def _str_(self):
         return self.portfolio.title

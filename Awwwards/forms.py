@@ -317,13 +317,13 @@ class UpdateProfileForm(forms.ModelForm):
         fields = ['profile_image', 'profession', 'bio', 'country', 'personal_website', 'github_link', 'instagram_link', 'linkedin_link', 'twitter_link']
 
 class AddPortfolioForm(forms.ModelForm):
-    portfolio_image = forms.ImageField(required=False, widget=forms.FileInput(attrs={'class': 'dropify', 'data-height':225, 'data-max-file-size':"1M"}))
-    title = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control mb-4', 'placeholder':'Portfolio Title'}))
-    caption = forms.CharField(required=False, widget=forms.Textarea(attrs={'class': 'form-control mb-4', 'rows': 5, 'placeholder':'Portfolio Description'}))
-    category = forms.ChoiceField(choices=CATEGORIES, required=False, widget=forms.Select(attrs={'class': 'form-control mb-4', 'placeholder':'Select Category'}))
-    primary_language = forms.ChoiceField(choices=LANGUAGES, required=False, widget=forms.Select(attrs={'class': 'form-control mb-4', 'placeholder':'Select Language'}))
+    portfolio_image = forms.ImageField(required=True, widget=forms.FileInput(attrs={'class': 'dropify', 'data-height':225, 'data-max-file-size':"1M"}))
+    title = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control mb-4', 'placeholder':'Portfolio Title'}))
+    caption = forms.CharField(required=True, widget=forms.Textarea(attrs={'class': 'form-control mb-4', 'rows': 5, 'placeholder':'Portfolio Description'}))
+    category = forms.ChoiceField(choices=CATEGORIES, required=True, widget=forms.Select(attrs={'class': 'form-control mb-4', 'placeholder':'Select Category'}))
+    primary_language = forms.ChoiceField(choices=LANGUAGES, required=True, widget=forms.Select(attrs={'class': 'form-control mb-4', 'placeholder':'Select Language'}))
     portfolio_site_url = forms.URLField(required=False, widget=forms.URLInput(attrs={'class': 'form-control mb-4', 'placeholder':'Portfolio URL'}))
-    repo_url = forms.URLField(required=False, widget=forms.URLInput(attrs={'class': 'form-control mb-4', 'placeholder':'GitHub Repository'}))
+    repo_url = forms.URLField(required=True, widget=forms.URLInput(attrs={'class': 'form-control mb-4', 'placeholder':'GitHub Repository'}))
 
     class Meta:
         model = Portfolio

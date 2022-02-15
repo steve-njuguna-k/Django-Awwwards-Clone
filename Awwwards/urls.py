@@ -26,6 +26,7 @@ urlpatterns = [
     path('profile/<str:username>', views.MyProfile, name="MyProfile"),
     path('user/<str:username>', views.UserProfile, name="UserProfile"),
     path('profile/<str:username>/portfolio', views.MyPortfolio, name="MyPortfolio"),
+    path('portfolio/<str:title>/rate', views.PortfolioRating, name="PortfolioRating"),
     path('search', views.Search, name="Search"),
 
     path('api/portfolio/', api_views.PortfolioAPI.as_view(), name="PortfolioAPI"),

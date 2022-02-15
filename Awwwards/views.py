@@ -229,7 +229,9 @@ def MyProfile(request, username):
 
 def PortfolioDetails(request, title):
     portfolio = Portfolio.objects.get(title=title)
-    return render(request, 'Portfolio Details.html', {'portfolio':portfolio})
+    ratings = Rating.objects.filter(portfolio = portfolio.id).all()
+    ratings_count = Rating.objects.filter(portfolio = portfolio.id)
+    return render(request, 'Portfolio Details.html', {'portfolio':portfolio, 'ratings':ratings, 'ratings_count':ratings_count})
 
 def UserProfile(request, username):
     profile = User.objects.get(username=username)
@@ -246,9 +248,9 @@ def Search(request):
         return render(request, 'Search Results.html')
 
 @login_required(login_url='Login')
-def PortfolioRating(request,id):
+def PortfolioRating(request,title):
     if request.method == 'POST':
-        portfolio = Portfolio.objects.get(id = id)
+        portfolio = Portfolio.objects.get(title = title)
         current_user = request.user
         comment = request.POST['comment']
         design_rating = request.POST['design_rating']
@@ -260,15 +262,17 @@ def PortfolioRating(request,id):
         Rating.objects.create(
             portfolio = portfolio,
             author = current_user,
+            profile = request.user.profile,
             comment = comment,
             design_rating = design_rating,
             usability_rating = usability_rating,
             content_rating = content_rating,
             creativity_rating = creativity_rating,
             experience_rating = experience_rating,
-            avarage_rate=round((float(design_rating) + float(usability_rating) + float(content_rating) + float(creativity_rating) + float(experience_rating))/5,2),)
+            avarage_rating=round((float(design_rating) + float(usability_rating) + float(content_rating) + float(creativity_rating) + float(experience_rating))/5,2),)
 
-        return redirect('PortfolioDetails')
+        messages.success(request, '✅ Your Review Has Been Created Successfully!')
+        return redirect('PortfolioDetails', title=title)
     else:
-        portfolio = Portfolio.objects.get(id = id) 
-        return render(request,"Portfolio Details.html",{"portfolio":portfolio})
+        messages.error(request, "⚠️ Your Review Wasn't Created!")
+        return redirect('PortfolioDetails', title=title)

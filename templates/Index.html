@@ -23,19 +23,31 @@
 
     <!--Main Section-->
     <div class="main-section">
+        <center>
+            {% if messages %}
+                {% for message in messages %} 
+                <div class="alert {{message.tags}} m-1" role="alert" style="font-size: medium; margin-top: 30px; margin-bottom: 30px;">
+                    {{message}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endfor %} 
+            {% endif %}
+        </center>
         <h5 class="py-4"><b>Featured Projects</b> | <span style="font-weight: lighter;">From Talented Software Developers</span></h5>
         <div class="row">
             {% if portfolios %}
                 <div class="row">
                     {% for portfolio in portfolios %}
                         <div class="col-sm-4">
-                            <div class="card shadow" style="margin-bottom: 30px; border-radius: 10px;">
-                                <a href="{% url 'PortfolioDetails' portfolio.title %}" name="">
+                            <div class="card shadow d-flex align-items-stretch" style="margin-bottom: 30px; border-radius: 10px;">
+                                <a href="/portfolio/{{ portfolio.title }}/details" name="">
                                     <img src="{{ portfolio.portfolio_image.url }}" class="card-img-top" style="border-radius: 10px 10px 0px 0px;" alt="...">
                                 </a>
                                 <div class="card-body">
                                     <h5 class="card-title">{{ portfolio.title }}</h5>
-                                    <p class="card-text text-muted">{{ portfolio.caption|truncatewords:25 }}</p>
+                                    <p class="card-text text-muted">{{ portfolio.caption|truncatewords:23 }}</p>
                                     <div class="badge" style="float:left">
                                         <h6><span style="font-weight: lighter;">Language:</span> {{ portfolio.primary_language }}</h6>
                                     </div>
