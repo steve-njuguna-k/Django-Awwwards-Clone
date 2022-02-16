@@ -25,13 +25,13 @@
         </div>
 
         <!-- Main Section -->
-        <div class="container-fluid main-section">
+        <div class="main-section">
             <div class="row">
                 {% if portfolios %}
                     <div class="row">
                         {% for portfolio in portfolios %}
                             <div class="col-sm-4">
-                                <div class="card shadow d-flex align-items-stretch" style="margin-bottom: 30px; border-radius: 10px;">
+                                <div class="card shadow" style="margin-bottom: 30px; border-radius: 10px;">
                                     <a href="/portfolio/{{ portfolio.title }}/details" name="">
                                         <img src="{{ portfolio.portfolio_image.url }}" class="card-img-top" style="border-radius: 10px 10px 0px 0px;" alt="...">
                                     </a>
